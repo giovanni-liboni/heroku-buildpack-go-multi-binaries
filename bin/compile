@@ -12,16 +12,16 @@ if [ -f $ENV_DIR/APP_PATH ]; then
     echo "-----> Using the app located in $APP_PATH"
     echo "       Creating a copy in $CACHE_DIR"
     mkdir -p $CACHE_DIR
-    cp -r $BUILD_DIR/$PROJECT_PATH $CACHE_DIR
+    cp -r $BUILD_DIR/$APP_PATH $CACHE_DIR
     echo "       Removing the cmd directory if present"
     if [ -d $BUILD_DIR/cmd ]; then
       rm -fr $BUILD_DIR/cmd
     fi  
     echo "       Creating the new root"
-    cp -r $CACHE_DIR/$PROJECT_PATH/.[!.]* $BUILD_DIR
-    cp -r $CACHE_DIR/$PROJECT_PATH/* $BUILD_DIR
+    cp -r $CACHE_DIR/$APP_PATH/.[!.]* $BUILD_DIR
+    cp -r $CACHE_DIR/$APP_PATH/* $BUILD_DIR
     echo "       Cleaning the temporary copy"
-    rm -rf $CACHE_DIR/$PROJECT_PATH
+    rm -rf $CACHE_DIR/$APP_PATH
     exit 0
   fi
 fi
