@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+BUILD_DIR=${1:-}
+CACHE_DIR=${2:-}
+ENV_DIR=${3:-}
+
+# Check if the APP_PATH variable is defined
+if [ -f $ENV_DIR/APP_PATH ]; then
+  APP_PATH=`cat $ENV_DIR/APP_PATH`
+  # Check if the APP_PATH is a valid app name
+  if [ -d $BUILD_DIR/$ADD_PATH ]; then
+    echo "-----> Using the app located in $APP_PATH"
+    echo "       Creating a copy in $CACHE_DIR"
+    mkdir -p $CACHE_DIR
+    cp -r $BUILD_DIR/$PROJECT_PATH $CACHE_DIR
+    echo "       Removing the cmd directory if present"
+    if [ -d $BUILD_DIR/cmd ]; then
+      rm -fr $BUILD_DIR/cmd
+    fi  
+    echo "       Creating the new root"
+    cp -r $CACHE_DIR/$PROJECT_PATH $BUILD_DIR
+    echo "       Cleaning the temporary copy"
+    rm -rf $CACHE_DIR/$PROJECT_PATH
+    exit 0
+  fi
+fi
+
+echo "APP_PATH is undefined"
+exit 1
