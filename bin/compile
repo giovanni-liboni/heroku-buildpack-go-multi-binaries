@@ -18,7 +18,8 @@ if [ -f $ENV_DIR/APP_PATH ]; then
       rm -fr $BUILD_DIR/cmd
     fi  
     echo "       Creating the new root"
-    cp -r $CACHE_DIR/$PROJECT_PATH $BUILD_DIR
+    cp -r $CACHE_DIR/$PROJECT_PATH/.[!.]* $BUILD_DIR
+    cp -r $CACHE_DIR/$PROJECT_PATH/* $BUILD_DIR
     echo "       Cleaning the temporary copy"
     rm -rf $CACHE_DIR/$PROJECT_PATH
     exit 0
